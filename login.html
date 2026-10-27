@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Login | INVICTUS 2026</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background-color: #0f172a; min-height: 100vh; display: flex; flex-direction: column;">
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="brand-logo">
+                ⚡ INVICTUS <span class="brand-badge">TECH FEST 2026</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="login.html" class="active">Admin Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Login Container -->
+    <main class="container" style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 20px;">
+        <div class="form-container" style="max-width: 440px; margin: 0; width: 100%; border: 1px solid #334155; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5);">
+            <div class="form-header">
+                <div style="font-size: 2.5rem; margin-bottom: 8px;">🔐</div>
+                <h2>Admin Portal</h2>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Enter coordinator or administrator credentials</p>
+            </div>
+
+            <!-- Error Notification -->
+            <div id="login-alert"></div>
+
+            <form action="login_process.php" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Enter admin username" required autofocus>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" required>
+                </div>
+
+                <div class="form-group" style="margin-top: 25px;">
+                    <button type="submit" class="btn btn-primary btn-block" style="padding: 12px; font-size: 1rem;">
+                        Sign In to Dashboard ➔
+                    </button>
+                </div>
+            </form>
+
+            <div style="margin-top: 25px; padding: 14px; background: #f8fafc; border-radius: 6px; font-size: 0.85rem; border: 1px solid var(--border-color); color: #475569;">
+                <strong>Demo Credentials for Viva:</strong><br>
+                Username: <code>admin</code><br>
+                Password: <code>admin123</code>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="index.html" style="font-size: 0.9rem; color: var(--text-muted);">← Return to Public Website</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border: none; padding-top: 0;">
+                <p>&copy; 2026 College Tech Fest Management System | Apex Institute of Engineering & Technology</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const error = urlParams.get('error');
+        const alertBox = document.getElementById('login-alert');
+
+        if (error === 'invalid') {
+            alertBox.innerHTML = '<div class="alert alert-danger">⚠️ Invalid username or password. Please try again.</div>';
+        } else if (error === 'empty') {
+            alertBox.innerHTML = '<div class="alert alert-danger">⚠️ Please fill in all required fields.</div>';
+        } else if (error === 'logged_out') {
+            alertBox.innerHTML = '<div class="alert alert-success">✓ You have been logged out successfully.</div>';
+        } else if (error === 'session_expired') {
+            alertBox.innerHTML = '<div class="alert alert-danger">⚠️ Session expired. Please login again.</div>';
+        }
+    </script>
+</body>
+</html>

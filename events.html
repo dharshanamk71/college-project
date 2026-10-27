@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Events | INVICTUS 2026</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="brand-logo">
+                ⚡ INVICTUS <span class="brand-badge">TECH FEST 2026</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Toggle navigation">☰</button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="events.html" class="active">Events</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="login.html" class="btn btn-secondary btn-sm">Admin Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #ffffff; padding: 45px 0 35px; text-align: center;">
+        <div class="container">
+            <h1 style="font-size: 2.4rem; margin-bottom: 8px;">Explore Technical Competitions</h1>
+            <p style="color: #94a3b8; max-width: 650px; margin: 0 auto;">Select your preferred challenge, review rules and registration fees, and secure your entry before registrations close.</p>
+        </div>
+    </header>
+
+    <!-- Events List Section -->
+    <main class="events-section">
+        <div class="container">
+            <!-- Filter Bar -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px;">
+                <div>
+                    <span style="font-weight: 600; color: var(--text-main);">Filter by Type:</span>
+                    <select id="event-type-filter" class="form-control" style="display: inline-block; width: auto; margin-left: 8px; padding: 6px 12px;">
+                        <option value="ALL">All Categories</option>
+                        <option value="Coding">Coding</option>
+                        <option value="Web Design">Web Design</option>
+                        <option value="Debugging">Debugging</option>
+                        <option value="Robotics">Robotics</option>
+                        <option value="Quiz">Quiz</option>
+                        <option value="Gaming">Gaming</option>
+                    </select>
+                </div>
+                <div style="font-size: 0.95rem; color: var(--text-muted);" id="events-count-badge">
+                    Loading events...
+                </div>
+            </div>
+
+            <!-- Dynamic Event Cards Grid -->
+            <div class="event-grid" id="events-container">
+                <div style="text-align: center; grid-column: 1 / -1; padding: 50px; color: var(--text-muted);">
+                    <p>Connecting to database and loading events...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border: none; padding-top: 0;">
+                <p>&copy; 2026 College Tech Fest Management System | Apex Institute of Engineering & Technology</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        let allEvents = [];
+
+        function renderEvents(eventsToDisplay) {
+            const container = document.getElementById('events-container');
+            const countBadge = document.getElementById('events-count-badge');
+            countBadge.innerText = `Showing ${eventsToDisplay.length} Event(s)`;
+
+            if (!eventsToDisplay || eventsToDisplay.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; grid-column: 1 / -1; padding: 50px; background: #ffffff; border-radius: 8px; border: 1px dashed var(--border-color);">
+                        <h3>No events match your criteria</h3>
+                        <p style="color: var(--text-muted); margin-top: 8px;">Try selecting another category or check back later.</p>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = eventsToDisplay.map(evt => `
+                <div class="event-card">
+                    <div class="event-card-header">
+                        <span class="event-badge">${evt.Event_Type}</span>
+                        <span class="event-fee">${parseFloat(evt.Registration_Fee) > 0 ? '₹' + parseFloat(evt.Registration_Fee).toFixed(0) : 'Free'}</span>
+                    </div>
+                    <div class="event-card-body">
+                        <h3 class="event-card-title">${evt.Event_Name}</h3>
+                        <p class="event-card-desc">${evt.Description}</p>
+                        <ul class="event-meta">
+                            <li>📅 <strong>Date:</strong> ${evt.Event_Date}</li>
+                            <li>📍 <strong>Venue:</strong> ${evt.Venue_Name || 'Campus Venue'}</li>
+                            <li>👥 <strong>Team Size:</strong> Max ${evt.Team_Size} Member${evt.Team_Size > 1 ? 's' : ''}</li>
+                            <li>⏳ <strong>Deadline:</strong> ${evt.Last_Date_to_Register}</li>
+                            <li>👤 <strong>Coordinator:</strong> ${evt.Coordinator_Name || 'Faculty Lead'}</li>
+                        </ul>
+                    </div>
+                    <div class="event-card-footer">
+                        <a href="register.html?event_id=${evt.Event_ID}" class="btn btn-primary btn-block">
+                            Register for ${evt.Event_Name} ➔
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Fetch events from MySQL
+        fetch('get_events.php')
+            .then(res => res.json())
+            .then(data => {
+                allEvents = data;
+                renderEvents(allEvents);
+            })
+            .catch(err => {
+                console.error("Error fetching live events:", err);
+                // Fallback static display if server is not yet running
+                allEvents = [
+                    {
+                        Event_ID: 1,
+                        Event_Name: "CodeSprint Hackathon",
+                        Description: "A 6-hour intense coding hackathon to build solutions for real-world smart campus challenges.",
+                        Event_Type: "Coding",
+                        Team_Size: 2,
+                        Registration_Fee: "200.00",
+                        Event_Date: "2026-10-15",
+                        Last_Date_to_Register: "2026-10-12",
+                        Venue_Name: "Turing Computing Lab (Lab 101)",
+                        Coordinator_Name: "Dr. Rajesh Sharma"
+                    },
+                    {
+                        Event_ID: 2,
+                        Event_Name: "WebCraft UI/UX Challenge",
+                        Description: "Design and implement responsive, accessible web interfaces given a live prompt.",
+                        Event_Type: "Web Design",
+                        Team_Size: 1,
+                        Registration_Fee: "100.00",
+                        Event_Date: "2026-10-15",
+                        Last_Date_to_Register: "2026-10-12",
+                        Venue_Name: "Ada Lovelace Lab (Lab 201)",
+                        Coordinator_Name: "Prof. Sunita Menon"
+                    },
+                    {
+                        Event_ID: 3,
+                        Event_Name: "BugHunt: Code Debugging",
+                        Description: "Test your debugging acumen across C++, Java, and Python broken code snippets.",
+                        Event_Type: "Debugging",
+                        Team_Size: 1,
+                        Registration_Fee: "50.00",
+                        Event_Date: "2026-10-16",
+                        Last_Date_to_Register: "2026-10-13",
+                        Venue_Name: "Turing Computing Lab (Lab 101)",
+                        Coordinator_Name: "Prof. Neha Gupta"
+                    },
+                    {
+                        Event_ID: 4,
+                        Event_Name: "RoboWars Battle Arena",
+                        Description: "Autonomous and manual obstacle-avoiding bot race and combat challenge.",
+                        Event_Type: "Robotics",
+                        Team_Size: 3,
+                        Registration_Fee: "300.00",
+                        Event_Date: "2026-10-16",
+                        Last_Date_to_Register: "2026-10-13",
+                        Venue_Name: "Robotics & IoT Center",
+                        Coordinator_Name: "Dr. Amit Patel"
+                    },
+                    {
+                        Event_ID: 5,
+                        Event_Name: "Tech Trivia Quiz",
+                        Description: "General technology, AI breakthroughs, computing history, and pop-culture quiz.",
+                        Event_Type: "Quiz",
+                        Team_Size: 2,
+                        Registration_Fee: "50.00",
+                        Event_Date: "2026-10-15",
+                        Last_Date_to_Register: "2026-10-13",
+                        Venue_Name: "Seminar Hall 2",
+                        Coordinator_Name: "Dr. Rajesh Sharma"
+                    },
+                    {
+                        Event_ID: 6,
+                        Event_Name: "LAN Gaming Championship",
+                        Description: "Fast-paced multiplayer e-sports tournament with round-robin elimination.",
+                        Event_Type: "Gaming",
+                        Team_Size: 1,
+                        Registration_Fee: "150.00",
+                        Event_Date: "2026-10-16",
+                        Last_Date_to_Register: "2026-10-14",
+                        Venue_Name: "Dr. APJ Abdul Kalam Auditorium",
+                        Coordinator_Name: "Prof. Neha Gupta"
+                    }
+                ];
+                renderEvents(allEvents);
+            });
+
+        // Filter event listener
+        document.getElementById('event-type-filter').addEventListener('change', (e) => {
+            const selected = e.target.value;
+            if (selected === 'ALL') {
+                renderEvents(allEvents);
+            } else {
+                const filtered = allEvents.filter(ev => ev.Event_Type.toLowerCase() === selected.toLowerCase());
+                renderEvents(filtered);
+            }
+        });
+    </script>
+</body>
+</html>

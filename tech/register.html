@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration | INVICTUS 2026</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="brand-logo">
+                ⚡ INVICTUS <span class="brand-badge">TECH FEST 2026</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Toggle navigation">☰</button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="register.html" class="active">Register</a></li>
+                <li><a href="login.html" class="btn btn-secondary btn-sm">Admin Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Registration Form Container -->
+    <main class="container">
+        <div class="form-container">
+            <div class="form-header">
+                <h2>Student Event Registration</h2>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Enter your student details to register for technical competitions</p>
+            </div>
+
+            <!-- Dynamic Alert Notifications -->
+            <div id="alert-box"></div>
+
+            <form action="register_process.php" method="POST" id="registration-form">
+                
+                <!-- Full Name & Roll Number -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="e.g. Aarav Sharma" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="roll_no">Roll / Student ID Number *</label>
+                        <input type="text" id="roll_no" name="roll_no" class="form-control" placeholder="e.g. 21CS001" required>
+                    </div>
+                </div>
+
+                <!-- Email & Phone -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">College / Personal Email *</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="student@apextech.edu" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" class="form-control" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+                    </div>
+                </div>
+
+                <!-- Gender, Semester, Year -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+                    <div class="form-group">
+                        <label for="gender">Gender *</label>
+                        <select id="gender" name="gender" class="form-control" required>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="semester">Semester *</label>
+                        <select id="semester" name="semester" class="form-control" required>
+                            <option value="1">Semester 1</option>
+                            <option value="2">Semester 2</option>
+                            <option value="3">Semester 3</option>
+                            <option value="4">Semester 4</option>
+                            <option value="5" selected>Semester 5</option>
+                            <option value="6">Semester 6</option>
+                            <option value="7">Semester 7</option>
+                            <option value="8">Semester 8</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="year">Year *</label>
+                        <select id="year" name="year" class="form-control" required>
+                            <option value="1">1st Year</option>
+                            <option value="2">2nd Year</option>
+                            <option value="3" selected>3rd Year</option>
+                            <option value="4">4th Year</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Department Selection (Loaded from DB) -->
+                <div class="form-group">
+                    <label for="department_id">Department *</label>
+                    <select id="department_id" name="department_id" class="form-control" required>
+                        <option value="">-- Select Your Department --</option>
+                        <option value="1">Computer Science & Engineering</option>
+                        <option value="2">Information Technology</option>
+                        <option value="3">Electronics & Communication</option>
+                        <option value="4">Mechanical Engineering</option>
+                        <option value="5">Civil Engineering</option>
+                    </select>
+                </div>
+
+                <!-- Event Selection (Loaded from DB) -->
+                <div class="form-group">
+                    <label for="event_id">Select Technical Event *</label>
+                    <select id="event_id" name="event_id" class="form-control" required>
+                        <option value="">-- Choose Event to Participate In --</option>
+                        <option value="1">CodeSprint Hackathon (Fee: ₹200)</option>
+                        <option value="2">WebCraft UI/UX Challenge (Fee: ₹100)</option>
+                        <option value="3">BugHunt: Code Debugging (Fee: ₹50)</option>
+                        <option value="4">RoboWars Battle Arena (Fee: ₹300)</option>
+                        <option value="5">Tech Trivia Quiz (Fee: ₹50)</option>
+                        <option value="6">LAN Gaming Championship (Fee: ₹150)</option>
+                    </select>
+                </div>
+
+                <!-- Team Name (Optional for team events) -->
+                <div class="form-group">
+                    <label for="team_name">Team Name <span style="font-weight: 400; color: var(--text-muted);">(Optional - if participating with a team)</span></label>
+                    <input type="text" id="team_name" name="team_name" class="form-control" placeholder="e.g. Binary Beasts">
+                </div>
+
+                <div class="form-group" style="margin-top: 30px;">
+                    <button type="submit" class="btn btn-primary btn-block" style="padding: 14px; font-size: 1.05rem;">
+                        Complete Registration ➔
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border: none; padding-top: 0;">
+                <p>&copy; 2026 College Tech Fest Management System | Apex Institute of Engineering & Technology</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Check for URL messages (e.g. ?status=success or ?status=error&msg=...)
+        const urlParams = new URLSearchParams(window.location.search);
+        const status = urlParams.get('status');
+        const msg = urlParams.get('msg');
+        const regId = urlParams.get('reg_id');
+        const alertBox = document.getElementById('alert-box');
+
+        if (status === 'success') {
+            alertBox.innerHTML = `
+                <div class="alert alert-success">
+                    <strong>🎉 Registration Successful!</strong><br>
+                    ${msg || 'Your registration has been confirmed in the database.'}
+                    ${regId ? `<br><strong>Registration ID:</strong> #${regId}` : ''}
+                </div>
+            `;
+        } else if (status === 'error') {
+            alertBox.innerHTML = `
+                <div class="alert alert-danger">
+                    <strong>⚠️ Registration Failed:</strong> ${msg || 'An error occurred while submitting your registration. Please try again.'}
+                </div>
+            `;
+        }
+
+        // Dynamically load departments from database
+        fetch('get_departments.php')
+            .then(res => res.json())
+            .then(departments => {
+                if (departments && departments.length > 0) {
+                    const deptSelect = document.getElementById('department_id');
+                    deptSelect.innerHTML = '<option value="">-- Select Your Department --</option>' + 
+                        departments.map(d => `<option value="${d.Department_ID}">${d.Department_Name}</option>`).join('');
+                }
+            })
+            .catch(err => console.log('Using default department list'));
+
+        // Dynamically load events from database
+        fetch('get_events.php')
+            .then(res => res.json())
+            .then(events => {
+                if (events && events.length > 0) {
+                    const eventSelect = document.getElementById('event_id');
+                    eventSelect.innerHTML = '<option value="">-- Choose Event to Participate In --</option>' + 
+                        events.map(e => `<option value="${e.Event_ID}">${e.Event_Name} (Fee: ₹${parseFloat(e.Registration_Fee).toFixed(0)})</option>`).join('');
+                    
+                    // Re-apply query param if pre-selected
+                    const preselected = urlParams.get('event_id');
+                    if (preselected) {
+                        eventSelect.value = preselected;
+                    }
+                }
+            })
+            .catch(err => console.log('Using default event list'));
+    </script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INVICTUS 2026 | College Tech Fest Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="brand-logo">
+                ⚡ INVICTUS <span class="brand-badge">TECH FEST 2026</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Toggle navigation">☰</button>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="login.html" class="btn btn-secondary btn-sm">Admin Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <span class="hero-subtitle">🚀 Apex Institute of Engineering & Technology</span>
+            <h1>Annual Technical Fest 2026</h1>
+            <p>Unleash your potential, showcase your technical prowess, and compete with the brightest minds in coding, robotics, web development, and gaming.</p>
+            <div class="hero-cta">
+                <a href="register.html" class="btn btn-primary" style="font-size: 1.05rem; padding: 12px 28px;">Register Now ➔</a>
+                <a href="events.html" class="btn btn-secondary" style="font-size: 1.05rem; padding: 12px 28px;">Browse Events</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Fest Highlights / Statistics -->
+    <section class="container">
+        <div class="fest-stats">
+            <div class="stat-card">
+                <div class="stat-number">6+</div>
+                <div class="stat-label">Competitions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Participants</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">₹50,000</div>
+                <div class="stat-label">Cash Prizes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Certificates Issued</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Upcoming Events Section -->
+    <section class="events-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Upcoming Featured Events</h2>
+                <p>Choose your battlefield and register before slots fill up!</p>
+            </div>
+
+            <!-- Dynamic Event Grid from Database -->
+            <div class="event-grid" id="featured-events-container">
+                <div style="text-align: center; grid-column: 1 / -1; padding: 40px; color: var(--text-muted);">
+                    <p>Loading events from database...</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="events.html" class="btn btn-primary">View All Events & Schedules ➔</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Participate Section -->
+    <section style="background-color: #ffffff; padding: 60px 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Participate?</h2>
+                <p>Designed to accelerate your engineering journey</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px;">
+                <div style="padding: 24px; border: 1px solid var(--border-color); border-radius: var(--radius-md); text-align: center;">
+                    <div style="font-size: 2.2rem; margin-bottom: 12px;">🏆</div>
+                    <h3 style="margin-bottom: 8px; font-size: 1.2rem;">Recognized Awards</h3>
+                    <p style="color: var(--text-muted); font-size: 0.92rem;">Win exciting trophies, cash rewards, and verified achievement certificates for your resume.</p>
+                </div>
+                <div style="padding: 24px; border: 1px solid var(--border-color); border-radius: var(--radius-md); text-align: center;">
+                    <div style="font-size: 2.2rem; margin-bottom: 12px;">💻</div>
+                    <h3 style="margin-bottom: 8px; font-size: 1.2rem;">Hands-on Problem Solving</h3>
+                    <p style="color: var(--text-muted); font-size: 0.92rem;">Work on live industry challenges under strict time constraints to sharpen your skills.</p>
+                </div>
+                <div style="padding: 24px; border: 1px solid var(--border-color); border-radius: var(--radius-md); text-align: center;">
+                    <div style="font-size: 2.2rem; margin-bottom: 12px;">🤝</div>
+                    <h3 style="margin-bottom: 8px; font-size: 1.2rem;">Peer Networking</h3>
+                    <p style="color: var(--text-muted); font-size: 0.92rem;">Connect with students, faculty leads, and industry mentors across different colleges.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>⚡ INVICTUS 2026</h4>
+                    <p>Annual College Technical Fest managed by Apex Institute of Engineering & Technology.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="events.html">Events List</a></li>
+                        <li><a href="register.html">Student Registration</a></li>
+                        <li><a href="login.html">Admin Portal</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Support</h4>
+                    <p>Email: fest@apextech.edu</p>
+                    <p>Helpdesk: +91 9876543210</p>
+                    <p>Campus Road, Knowledge Park</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 College Tech Fest Management System | Built with HTML, CSS, PHP & MySQL</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Fetch upcoming events from MySQL via get_events.php
+        fetch('get_events.php')
+            .then(res => res.json())
+            .then(events => {
+                const container = document.getElementById('featured-events-container');
+                if (!events || events.length === 0) {
+                    container.innerHTML = '<p style="text-align:center; grid-column:1/-1;">No events found in database.</p>';
+                    return;
+                }
+                
+                // Show first 3 events on home page
+                const previewEvents = events.slice(0, 3);
+                container.innerHTML = previewEvents.map(evt => `
+                    <div class="event-card">
+                        <div class="event-card-header">
+                            <span class="event-badge">${evt.Event_Type}</span>
+                            <span class="event-fee">${parseFloat(evt.Registration_Fee) > 0 ? '₹' + parseFloat(evt.Registration_Fee).toFixed(0) : 'Free'}</span>
+                        </div>
+                        <div class="event-card-body">
+                            <h3 class="event-card-title">${evt.Event_Name}</h3>
+                            <p class="event-card-desc">${evt.Description}</p>
+                            <ul class="event-meta">
+                                <li>📅 <strong>Date:</strong> ${evt.Event_Date}</li>
+                                <li>📍 <strong>Venue:</strong> ${evt.Venue_Name || 'Campus Venue'}</li>
+                                <li>👥 <strong>Team:</strong> Max ${evt.Team_Size} Member${evt.Team_Size > 1 ? 's' : ''}</li>
+                            </ul>
+                        </div>
+                        <div class="event-card-footer">
+                            <a href="register.html?event_id=${evt.Event_ID}" class="btn btn-primary btn-block">Register for Event</a>
+                        </div>
+                    </div>
+                `).join('');
+            })
+            .catch(err => {
+                console.error("Database fetch notice:", err);
+                const container = document.getElementById('featured-events-container');
+                container.innerHTML = `
+                    <div class="event-card">
+                        <div class="event-card-header"><span class="event-badge">Coding</span><span class="event-fee">₹200</span></div>
+                        <div class="event-card-body">
+                            <h3 class="event-card-title">CodeSprint Hackathon</h3>
+                            <p class="event-card-desc">A 6-hour intense coding hackathon to build solutions for real-world smart campus challenges.</p>
+                            <ul class="event-meta">
+                                <li>📅 <strong>Date:</strong> 2026-10-15</li>
+                                <li>📍 <strong>Venue:</strong> Turing Computing Lab (Lab 101)</li>
+                                <li>👥 <strong>Team:</strong> Max 2 Members</li>
+                            </ul>
+                        </div>
+                        <div class="event-card-footer">
+                            <a href="register.html?event_id=1" class="btn btn-primary btn-block">Register for Event</a>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-card-header"><span class="event-badge">Web Design</span><span class="event-fee">₹100</span></div>
+                        <div class="event-card-body">
+                            <h3 class="event-card-title">WebCraft UI/UX Challenge</h3>
+                            <p class="event-card-desc">Design and implement responsive, accessible web interfaces given a live prompt.</p>
+                            <ul class="event-meta">
+                                <li>📅 <strong>Date:</strong> 2026-10-15</li>
+                                <li>📍 <strong>Venue:</strong> Ada Lovelace Lab (Lab 201)</li>
+                                <li>👥 <strong>Team:</strong> 1 Member</li>
+                            </ul>
+                        </div>
+                        <div class="event-card-footer">
+                            <a href="register.html?event_id=2" class="btn btn-primary btn-block">Register for Event</a>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-card-header"><span class="event-badge">Robotics</span><span class="event-fee">₹300</span></div>
+                        <div class="event-card-body">
+                            <h3 class="event-card-title">RoboWars Battle Arena</h3>
+                            <p class="event-card-desc">Autonomous and manual obstacle-avoiding bot race and combat challenge.</p>
+                            <ul class="event-meta">
+                                <li>📅 <strong>Date:</strong> 2026-10-16</li>
+                                <li>📍 <strong>Venue:</strong> Robotics & IoT Center</li>
+                                <li>👥 <strong>Team:</strong> Max 3 Members</li>
+                            </ul>
+                        </div>
+                        <div class="event-card-footer">
+                            <a href="register.html?event_id=4" class="btn btn-primary btn-block">Register for Event</a>
+                        </div>
+                    </div>
+                `;
+            });
+    </script>
+</body>
+</html>
